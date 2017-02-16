@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+  activator:
+    image: scala-activator
+    container_name: app
+    networks:
+      - default
+    volumes:
+      - "${PWD}:/project"
+    working_dir: /project
+    ports:
+      - "9000:9000"
+    entrypoint: /bin/bash
+
+  postgres:
+    image: postgres:latest
+    container_name: db
+    environment:
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_USER=test
+      - POSTGRES_DB=test
+    volumes:
+      - "${PWD}/schemas:/docker-entrypoint-initdb.d/"
+    working_dir: /docker-entrypoint-initdb.d
+    ports:
+      - "0.0.0.0:5432:5432"
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
