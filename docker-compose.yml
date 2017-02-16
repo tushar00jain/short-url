@@ -2,7 +2,7 @@ version: '2'
 
 services:
   activator:
-    image: scala-activator
+    image: tushar00jain/scala-activator
     container_name: app
     networks:
       - default
