@@ -1,11 +1,13 @@
 package controllers
 
-import models.Url
+import models.{Url, Click}
 import javax.inject._
 import play.api._
 import play.api.mvc._
 import play.api.data.Form
 import play.api.data.Forms._
+import anorm._
+import java.util.Date
 
 // import services.encode
 // import services.decode
@@ -20,17 +22,23 @@ class HomeController @Inject() (short: Short) extends Controller {
   }
 
   val urlForm = Form (
-    mapping(
-        "url" -> text
-      )(Url.apply)(Url.unapply)
+    single(
+        "address" -> text
+      )
   )
 
   def cat = Action { implicit request =>
     println(s"query string: ${request.body}")
-    val test = short.encode(1)
-    println(test)
-    val url = urlForm.bindFromRequest.get
+    val address = urlForm.bindFromRequest.fold(
+      errors => BadRequest(views.html.index()),
+      address => {
+          val time = new Date()
+          val ip = request.remoteAddress
+          Url.insert(Url(None, address))
+          Click.insert(Click(None, time, ip, 1))
+          Redirect(routes.HomeController.index)
+      }
+    )
     Redirect(routes.HomeController.index)
   }
-
 }

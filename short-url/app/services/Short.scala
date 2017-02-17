@@ -22,7 +22,11 @@ trait Short {
 class CompleteShort extends Short {  
   private val alphabets = "abcd"
 
-  override def encode(url: Int): String = "test"
+  override def encode(url: Int): String = {
+    "test"
+  }
 
-  override def decode(url: String): Int = 1
+  override def decode(url: String): Int = {
+    1
+  }
 }

@@ -1,22 +1,9 @@
-@*
- * This template takes a single argument, a String containing a
- * message to display.
- *@
-@*
- * Call the `main` template with two arguments. The first
- * argument is a `String` with the title of the page, the second
- * argument is an `Html` object containing the body of the page.
- *@
 @main("Short URL") {
 
-    @*
-     * Get an `Html` object by calling the built-in Play welcome
-     * template and passing a `String` message.
-     *@
      <h2>Short URL</h2>
      <div>
        <form action="@routes.HomeController.cat()" method="post">
-         <input type="text" name="url" placeholder="Please enter the url" required>
+         <input type="text" name="address" placeholder="Please enter the url" required>
          <input type="submit" value="Submit">
        </form>
      </div>
