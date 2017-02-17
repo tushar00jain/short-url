@@ -8,6 +8,12 @@ cd short-url
 activator run
 ```
 
+```
+docker start shorturl_activator_run_2
+docker exec -it shorturl_activator_run_2 bash 
+docker stop shorturl_activator_run_2
+```
+
 # DEBUG
 
   - postgres
