@@ -1,32 +1,20 @@
 package services
 import javax.inject._
 
-// object encode extends (Int => String) {
-//   def apply(url: Int): String = {
-//     "test"
-//   }
-// }
-//
-// object decode extends (String => Int) {
-//   def apply(url: String): Int = {
-//     1
-//   }
-// }
-
 trait Short {
-  def encode(url: Int): String
-  def decode(url: String): Int
+  def encode(url: Option[Long]): String
+  def decode(url: String): Option[Long]
 }
 
 @Singleton
 class CompleteShort extends Short {  
   private val alphabets = "abcd"
 
-  override def encode(url: Int): String = {
+  override def encode(url: Option[Long]): String = {
     "test"
   }
 
-  override def decode(url: String): Int = {
-    1
+  override def decode(url: String): Option[Long] = {
+    Some(1L)
   }
 }

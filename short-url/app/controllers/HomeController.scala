@@ -6,11 +6,7 @@ import play.api._
 import play.api.mvc._
 import play.api.data.Form
 import play.api.data.Forms._
-import anorm._
 import java.util.Date
-
-// import services.encode
-// import services.decode
 
 import services.Short
 
@@ -34,8 +30,12 @@ class HomeController @Inject() (short: Short) extends Controller {
       address => {
           val time = new Date()
           val ip = request.remoteAddress
-          Url.insert(Url(None, address))
-          Click.insert(Click(None, time, ip, 1))
+          val url = Url.insert(Url(None, address))
+          // val ip = "172.19.0.2"
+          // val url = Some(1L)
+          val click = Click.insert(Click(None, time, ip, url))
+          val encoded = short.encode(url)
+          println(encoded)
           Redirect(routes.HomeController.index)
       }
     )
