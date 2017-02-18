@@ -2,7 +2,7 @@
 
 To get started, run
  - ```docker-compose up -d db```
- - ```docker-compose run --service-ports activator``` and inside the container ```activator run```
+ - ```docker-compose run --service-ports activator``` and inside the container ```./run.sh```
 
 Typesafe activator might take some time to resolve dependiencies for the first time.
 Run ```docker logs -f --tail=100 app``` to track the progress.

@@ -1,5 +1,6 @@
-FROM tushar00jain/scala-activator:latest
+FROM tushar00jain/scala-activator-node:latest
 
-RUN \
-    curl -sL https://deb.nodesource.com/setup_7.x | bash - && \
-    apt-get install -y nodejs
+ADD . /project 
+WORKDIR /project/short-url
+
+RUN activator compile
