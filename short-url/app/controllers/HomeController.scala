@@ -7,6 +7,10 @@ import play.api.mvc._
 import play.api.data.Form
 import play.api.data.Forms._
 import java.util.Date
+import play.api.db.DB
+import anorm._
+import play.api.libs.json.Json
+import play.api.Play.current
 
 import services.Short
 
@@ -40,5 +44,15 @@ class HomeController @Inject() (short: Short) extends Controller {
       }
     )
     Redirect(routes.HomeController.index)
+  }
+
+  def group = Action { implicit request => 
+    DB.withConnection { implicit c =>
+      val data = SQL("SELECT json_build_object('ip', c.ip, 'data', json_agg(json_build_object('address', u.address, 'time', c.time)))" + 
+        "FROM click c LEFT JOIN url u ON c.address=u.id GROUP BY c.ip;")().map {
+          case Row(x: Any) => x
+        }
+      Ok(Json.toJson(data.head.toString))
+    }
   }
 }

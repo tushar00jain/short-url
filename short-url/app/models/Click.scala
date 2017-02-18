@@ -19,11 +19,4 @@ object Click {
       ).executeInsert()
     }
   }
-
-  // def group(): JSON = {
-  //   DB.withConnection { implicit c =>
-  //     SQL("SELECT json_build_object('ip', c.ip, 'data', json_agg(json_build_object('address', u.address, 'time', c.time))) FROM click c LEFT JOIN url u ON c.address=u.id GROUP BY c.ip;")
-  //   }
-  //
-  // }
 }
