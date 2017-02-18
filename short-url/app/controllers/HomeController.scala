@@ -75,7 +75,6 @@ class HomeController @Inject() (short: Short) extends Controller {
     }
   }
 
-
   def group = Action { implicit request => 
     DB.withConnection { implicit c =>
       // returns json as rows: each row contains information about a single ip address
@@ -83,7 +82,7 @@ class HomeController @Inject() (short: Short) extends Controller {
         "FROM click c LEFT JOIN url u ON c.address=u.id GROUP BY c.ip;")().map {
           case Row(x: Any) => x
         }
-      Ok(Json.toJson(data.head.toString))
+      Ok(data.head.toString).as("application/json")
     }
   }
 }
