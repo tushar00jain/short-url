@@ -36,10 +36,15 @@ class HomeController @Inject() (short: Short) extends Controller {
           val ip = request.remoteAddress
           val url = Url.insert(Url(None, address))
           // val ip = "172.19.0.2"
-          // val url = Some(1L)
+          // val url = Some(19158L)
+
           val click = Click.insert(Click(None, time, ip, url))
+
           val encoded = short.encode(url)
           println(encoded)
+
+          // val decoded = short.decode("e9a")
+          // println(decoded)
           Redirect(routes.HomeController.index)
       }
     )
