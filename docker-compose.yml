@@ -4,14 +4,12 @@ services:
   activator:
     image: tushar00jain/scala-activator-node
     container_name: app
-    # networks:
-    #   - default
     volumes:
       - "${PWD}:/project"
-    working_dir: /project
+    working_dir: /project/short-url
     ports:
       - "9000:9000"
-    entrypoint: /bin/bash
+    entrypoint: activator run
     links:
       - postgres
 
@@ -27,9 +25,3 @@ services:
     working_dir: /docker-entrypoint-initdb.d
     ports:
       - "0.0.0.0:5432:5432"
-    # networks:
-    #   - default
-
-# networks:
-#   default:
-#     driver: bridge
