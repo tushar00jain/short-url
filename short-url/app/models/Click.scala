@@ -10,6 +10,7 @@ object Click {
 
   val parser: RowParser[Click] = Macro.namedParser[Click]
 
+  // insert the click information into the database
   def insert(click: Click): Option[Long] = {
     DB.withConnection { implicit c =>
     SQL("insert into Click(time, ip, address) values ({time}, {ip}, {address})").on(
