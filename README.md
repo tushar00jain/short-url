@@ -1,8 +1,11 @@
 # Short URL
 
-Run ```docker-compose up -d``` to get started.
+To get started, run
+ - ```docker-compose up -d db```
+ - ```docker-compose run --service-ports activator``` and inside the container ```activator run```
+
 Typesafe activator might take some time to resolve dependiencies for the first time.
-Run ```docker logs -f --tail=100 app``` to check the progress.
+Run ```docker logs -f --tail=100 app``` to track the progress.
 
 # Routes
 

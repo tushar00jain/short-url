@@ -9,7 +9,7 @@ services:
     working_dir: /project/short-url
     ports:
       - "9000:9000"
-    entrypoint: activator run
+    entrypoint: /bin/bash
     links:
       - postgres
 
