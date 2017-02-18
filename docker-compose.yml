@@ -2,7 +2,7 @@ version: '2'
 
 services:
   activator:
-    image: tushar00jain/scala-activator-node
+    image: tushar00jain/scala-activator-full
     container_name: app
     volumes:
       - "${PWD}:/project"
