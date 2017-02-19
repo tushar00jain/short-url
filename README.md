@@ -1,7 +1,7 @@
 # Short URL
 
 To get started, run
- - ```docker-compose up -d db```
+ - ```docker-compose up -d postgres```
  - ```docker-compose run --service-ports activator``` and inside the container ```./run.sh```
 
 # Routes
